@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #e7fafe;
+  --color-option: #ff7967;
+  --color-text: '#1E293B';
+  --color-accent: '#4F46E5';
+  --color-accentHover: '#4338CA';
+
+  --font-text: 'Inter';
+  --font-logo: 'Lobster';
+}
