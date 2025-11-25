@@ -162,7 +162,7 @@ export default function Home() {
           <div className="content grid grid-cols-3 gap-8">
             {recipes.map((recipe) => (
               <Link
-                to={`/recipe_detail/:${recipe.id}`}
+                to={`/recipe_detail/${recipe.id}`}
                 key={recipe.id}
                 className="card flex flex-col gap-5 bg-[linear-gradient(to_bottom,var(--color-white),var(--color-primary))] pb-7 pt-3 rounded-3xl"
               >

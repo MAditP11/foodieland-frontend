@@ -21,12 +21,17 @@ import { GetAllRecipes, GetRecipeById } from '../api/recipeApi'
 export default function DetailRecipe() {
   const { id } = useParams()
   const [recipe, setRecipe] = useState(null)
-  const [recipes, setRecipes] = useState(null)
+  console.log(recipe)
+  const [recipes, setRecipes] = useState([])
   const otherRecipe = recipes.filter((r) => r.id !== Number(id))
   useEffect(() => {
     GetRecipeById(id).then(setRecipe).catch(console.error)
     GetAllRecipes().then(setRecipes).catch(console.error)
   }, [id])
+
+  if (!recipe) {
+    return <div>Loading...</div> // ← cegah error
+  }
 
   return (
     <div>
@@ -221,61 +226,39 @@ export default function DetailRecipe() {
                   <h2 class="font-semibold text-3xl">Directions</h2>
                 </div>
                 <div class="flex flex-col">
-                  <div class="flex gap-5 pt-8 pb-10 border-b border-black/10 w-full">
-                    <div class="p-2.5 border border-[#DBE2E5] rounded-full h-fit mt-1"></div>
-                    <div class="flex flex-col gap-6 ">
-                      <div class="font-semibold font-inter text-2xl">
-                        1. Lorem ipsum dolor sit amet.
-                      </div>
-                      <div class="font-normal text-base font-inter text-black/60 leading-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Unde accusamus, dolor necessitatibus reprehenderit
-                        dolorem libero quae? Officia alias facere qui animi
-                        accusamus. Dolorum dolore repellat animi? Impedit soluta
-                        dignissimos modi.
-                      </div>
-                      <div class="">
-                        <img src={ImgDirect1} alt="" />
-                      </div>
-                      <div class="font-normal text-base font-inter text-black/60 leading-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Perferendis cupiditate asperiores laboriosam
-                        voluptates eligendi? Quos harum voluptatem temporibus
-                        vitae doloribus obcaecati dolor doloremque consequuntur.
-                        Magnam placeat soluta laborum id eveniet!
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex gap-4 py-10 border-b border-black/10 w-full">
-                    <div class="p-2.5 border border-[#DBE2E5] rounded-full h-fit mt-1"></div>
-                    <div class="flex flex-col gap-3">
-                      <div class="font-semibold font-inter text-2xl">
-                        2. Lorem ipsum dolor sit amet.
-                      </div>
-                      <div class="font-normal text-base font-inter text-black/60 leading-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Unde accusamus, dolor necessitatibus reprehenderit
-                        dolorem libero quae? Officia alias facere qui animi
-                        accusamus. Dolorum dolore repellat animi? Impedit soluta
-                        dignissimos modi.
+                  {recipe.directions.map((direction, index) => (
+                    <div
+                      key={index}
+                      class="flex gap-5 pt-8 pb-10 border-b border-black/10 w-full"
+                    >
+                      <div class="p-2.5 border border-[#DBE2E5] rounded-full h-fit mt-1"></div>
+                      <div class="flex flex-col gap-6 ">
+                        <div class="font-semibold font-inter text-2xl">
+                          {++index} {direction.title_direction}
+                        </div>
+                        <div class="font-normal text-base font-inter text-black/60 leading-7">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Unde accusamus, dolor necessitatibus
+                          reprehenderit dolorem libero quae? Officia alias
+                          facere qui animi accusamus. Dolorum dolore repellat
+                          animi? Impedit soluta dignissimos modi.
+                        </div>
+                        {direction.image_direction !== '' ? (
+                          <div class="">
+                            <img
+                              src={`http://localhost:8080/${direction.image_direction}`}
+                              alt=""
+                            />
+                          </div>
+                        ) : (
+                          <></>
+                        )}
+                        <div class="font-normal text-base font-inter text-black/60 leading-7">
+                          {direction.description_direction}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="flex gap-4 py-10 border-b border-black/10 w-full">
-                    <div class="p-2.5 border border-[#DBE2E5] rounded-full h-fit mt-1"></div>
-                    <div class="flex flex-col gap-3">
-                      <div class="font-semibold font-inter text-2xl">
-                        3. Lorem ipsum dolor sit amet.
-                      </div>
-                      <div class="font-normal text-base font-inter text-black/60 leading-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Unde accusamus, dolor necessitatibus reprehenderit
-                        dolorem libero quae? Officia alias facere qui animi
-                        accusamus. Dolorum dolore repellat animi? Impedit soluta
-                        dignissimos modi.
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -288,7 +271,7 @@ export default function DetailRecipe() {
                   </h2>
                 </div>
                 <div class="flex flex-col gap-4">
-                  {otherRecipe.map((recipe) => (
+                  {otherRecipe.slice(0, 4).map((recipe) => (
                     <Link
                       key={recipe.id}
                       to={`/recipe_detail/${recipe.id}`}
@@ -296,6 +279,7 @@ export default function DetailRecipe() {
                     >
                       <div class="img">
                         <img
+                          className="max-w-36 rounded-lg"
                           src={`http://localhost:8080/${recipe.image}`}
                           alt=""
                         />

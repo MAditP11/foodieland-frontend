@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ImgCardList1 from '../assets/IMG_FOODIELAND/list/image 26.png'
 import ImgCardList2 from '../assets/IMG_FOODIELAND/list/image 26.png'
@@ -6,42 +6,14 @@ import ImgCardList3 from '../assets/IMG_FOODIELAND/list/image 26.png'
 import ImgCardList4 from '../assets/IMG_FOODIELAND/list/image 26.png'
 
 import { Timer, Utensils } from 'lucide-react'
+import { GetAllRecipes } from '../api/recipeApi'
 
-export default function CardList2Container({ title, paragraf = false }) {
-  const [recipe] = useState([
-    {
-      id: 1,
-      name: 'Big and Juicy Wagyu Beef Cheesburger',
-      duration: '30 Minutes',
-      category: 'Snack',
-      image: ImgCardList1,
-      isLike: false,
-    },
-    {
-      id: 2,
-      name: 'Big and Juicy Wagyu Beef Cheesburger 2',
-      duration: '30 Minutes',
-      category: 'Snack',
-      image: ImgCardList2,
-      isLike: false,
-    },
-    {
-      id: 3,
-      name: 'Big and Juicy Wagyu Beef Cheesburger 3',
-      duration: '30 Minutes',
-      category: 'Snack',
-      image: ImgCardList3,
-      isLike: false,
-    },
-    {
-      id: 4,
-      name: 'Big and Juicy Wagyu Beef Cheesburger 4',
-      duration: '30 Minutes',
-      category: 'Snack',
-      image: ImgCardList4,
-      isLike: false,
-    },
-  ])
+export default function CardList2Container({ title, paragraf = false, id }) {
+  const [recipes, setRecipes] = useState([])
+  const otherRecipes = recipes.filter((r) => r.id !== Number(id))
+  useEffect(() => {
+    GetAllRecipes().then(setRecipes).catch(console.error)
+  }, [])
   return (
     <>
       {paragraf ? (
@@ -58,24 +30,28 @@ export default function CardList2Container({ title, paragraf = false }) {
           </div>
 
           <div className="content grid grid-cols-4 gap-8">
-            {recipe.map((item) => (
+            {otherRecipes.map((item) => (
               <div
                 key={item.id}
-                className="card flex flex-col items-center gap-4 pb-5 rounded-3xl"
+                className="card flex flex-col gap-4 pb-5 rounded-3xl"
               >
                 <div className="img-recipe">
-                  <img className="rounded-3xl" src={item.image} alt="" />
+                  <img
+                    className="rounded-3xl"
+                    src={`http://localhost:8080/${item.image}`}
+                    alt=""
+                  />
                 </div>
                 <div className="name-recipe">
                   <h3 className="font-semibold text-lg font-inter leading-6">
-                    {item.name}
+                    {item.title}
                   </h3>
                 </div>
                 <div className="etc flex w-full gap-6">
                   <div className="duration flex gap-2">
                     <Timer color="black" size={20} />
                     <p className="font-inter font-medium text-sm text-black/60">
-                      {item.duration}
+                      {item.cook_time}
                     </p>
                   </div>
                   <div className="category flex gap-2">
@@ -98,24 +74,28 @@ export default function CardList2Container({ title, paragraf = false }) {
           </div>
 
           <div className="content grid grid-cols-4 gap-8">
-            {recipe.map((item) => (
+            {otherRecipes.map((item) => (
               <div
                 key={item.id}
-                className="card flex flex-col items-center gap-4 pb-5 rounded-3xl"
+                className="card flex flex-col gap-4 pb-5 rounded-3xl"
               >
                 <div className="img-recipe">
-                  <img className="rounded-3xl" src={item.image} alt="" />
+                  <img
+                    className="rounded-3xl"
+                    src={`http://localhost:8080/${item.image}`}
+                    alt=""
+                  />
                 </div>
                 <div className="name-recipe">
                   <h3 className="font-semibold text-lg font-inter leading-6">
-                    {item.name}
+                    {item.title}
                   </h3>
                 </div>
                 <div className="etc flex w-full gap-6">
                   <div className="duration flex gap-2">
                     <Timer color="black" size={20} />
                     <p className="font-inter font-medium text-sm text-black/60">
-                      {item.duration}
+                      {item.cook}
                     </p>
                   </div>
                   <div className="category flex gap-2">
