@@ -45,40 +45,40 @@ export default function CardList2Container({ title, paragraf = false }) {
   return (
     <>
       {paragraf ? (
-        <div class="list-recipes2 flex flex-col items-center gap-20 w-full py-5 px-12">
-          <div class="flex gap-24 justify-between items-center">
-            <div class="sub-title w-1/2">
-              <h1 class="text-5xl font-semibold font-inter">{title}</h1>
+        <div className="list-recipes2 flex flex-col items-center gap-20 w-full py-5 px-12">
+          <div className="flex gap-24 justify-between items-center">
+            <div className="sub-title w-1/2">
+              <h1 className="text-5xl font-semibold font-inter">{title}</h1>
             </div>
-            <div class="parag w-1/2">
+            <div className="parag w-1/2">
               <p className="font-normal text-base font-inter text-black/60 leading-7">
                 {paragraf}
               </p>
             </div>
           </div>
 
-          <div class="content grid grid-cols-4 gap-8">
+          <div className="content grid grid-cols-4 gap-8">
             {recipe.map((item) => (
               <div
                 key={item.id}
-                class="card flex flex-col items-center gap-4 pb-5 rounded-3xl"
+                className="card flex flex-col items-center gap-4 pb-5 rounded-3xl"
               >
-                <div class="img-recipe">
-                  <img class="rounded-3xl" src={item.image} alt="" />
+                <div className="img-recipe">
+                  <img className="rounded-3xl" src={item.image} alt="" />
                 </div>
-                <div class="name-recipe">
-                  <h3 class="font-semibold text-lg font-inter leading-6">
+                <div className="name-recipe">
+                  <h3 className="font-semibold text-lg font-inter leading-6">
                     {item.name}
                   </h3>
                 </div>
-                <div class="etc flex w-full gap-6">
-                  <div class="duration flex gap-2">
+                <div className="etc flex w-full gap-6">
+                  <div className="duration flex gap-2">
                     <Timer color="black" size={20} />
                     <p className="font-inter font-medium text-sm text-black/60">
                       {item.duration}
                     </p>
                   </div>
-                  <div class="category flex gap-2">
+                  <div className="category flex gap-2">
                     <Utensils color="black" size={20} />
                     <p className="font-inter font-medium text-sm text-black/60">
                       {item.category}
@@ -90,35 +90,35 @@ export default function CardList2Container({ title, paragraf = false }) {
           </div>
         </div>
       ) : (
-        <div class="list-recipes2 flex flex-col items-center gap-16 w-full py-5">
-          <div class="flex gap-24 items-center">
-            <div class="sub-title">
-              <h1 class="text-3xl font-semibold">{title}</h1>
+        <div className="list-recipes2 flex flex-col items-center gap-16 w-full py-5">
+          <div className="flex gap-24 items-center">
+            <div className="sub-title">
+              <h1 className="text-3xl font-semibold">{title}</h1>
             </div>
           </div>
 
-          <div class="content grid grid-cols-4 gap-8">
+          <div className="content grid grid-cols-4 gap-8">
             {recipe.map((item) => (
               <div
                 key={item.id}
-                class="card flex flex-col items-center gap-4 pb-5 rounded-3xl"
+                className="card flex flex-col items-center gap-4 pb-5 rounded-3xl"
               >
-                <div class="img-recipe">
-                  <img class="rounded-3xl" src={item.image} alt="" />
+                <div className="img-recipe">
+                  <img className="rounded-3xl" src={item.image} alt="" />
                 </div>
-                <div class="name-recipe">
-                  <h3 class="font-semibold text-lg font-inter leading-6">
+                <div className="name-recipe">
+                  <h3 className="font-semibold text-lg font-inter leading-6">
                     {item.name}
                   </h3>
                 </div>
-                <div class="etc flex w-full gap-6">
-                  <div class="duration flex gap-2">
+                <div className="etc flex w-full gap-6">
+                  <div className="duration flex gap-2">
                     <Timer color="black" size={20} />
                     <p className="font-inter font-medium text-sm text-black/60">
                       {item.duration}
                     </p>
                   </div>
-                  <div class="category flex gap-2">
+                  <div className="category flex gap-2">
                     <Utensils color="black" size={20} />
                     <p className="font-inter font-medium text-sm text-black/60">
                       {item.category}

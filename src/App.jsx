@@ -12,7 +12,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         {/* route lain opsional */}
         <Route path="/contact" element={<Contact />} />
-        <Route path="/recipe_detail" element={<DetailRecipe />} />
+        <Route path="/recipe_detail/:id" element={<DetailRecipe />} />
         <Route path="/blog_article_detail" element={<DetailBlogArticle />} />
         <Route path="/blog_article_list" element={<BlogArticleList />} />
       </Routes>

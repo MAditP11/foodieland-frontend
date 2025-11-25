@@ -1,6 +1,5 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import '../index.css'
 import Header from '../components/header'
 import ImgCover from '../assets/IMG_FOODIELAND/details/Group13937.png'
@@ -17,9 +16,17 @@ import ImgCardList from '../assets/IMG_FOODIELAND/list/image 26.png'
 import CardList2 from '../components/cardList2'
 import Footer from '../components/footer'
 import CardList2Container from '../components/cardList2Container'
+import { GetAllRecipes, GetRecipeById } from '../api/recipeApi'
 
 export default function DetailRecipe() {
-  // const [count, setCount] = useState(0)
+  const { id } = useParams()
+  const [recipe, setRecipe] = useState(null)
+  const [recipes, setRecipes] = useState(null)
+  const otherRecipe = recipes.filter((r) => r.id !== Number(id))
+  useEffect(() => {
+    GetRecipeById(id).then(setRecipe).catch(console.error)
+    GetAllRecipes().then(setRecipes).catch(console.error)
+  }, [id])
 
   return (
     <div>
@@ -33,7 +40,7 @@ export default function DetailRecipe() {
             <div class=" flex flex-col gap-12">
               <div class="title">
                 <h1 class="font-semibold font-inter text-6xl">
-                  Health Japanese Fried Rice
+                  {recipe.title}
                 </h1>
               </div>
               <div class="flex">
@@ -42,9 +49,11 @@ export default function DetailRecipe() {
                     <User color="black" size={36} />
                   </div>
                   <div class="data-user flex flex-col gap-0.5">
-                    <p class="font-bold text-base font-inter">John Smith</p>
+                    <p class="font-bold text-base font-inter">
+                      {recipe.writer}
+                    </p>
                     <p class="font-medium text-sm font-inter text-black/60">
-                      15 March 2002
+                      {recipe.create_at}
                     </p>
                   </div>
                 </div>
@@ -56,7 +65,7 @@ export default function DetailRecipe() {
                   <div class="prep-time flex flex-col gap-0.5">
                     <p class="font-medium text-sm font-inter">PREP TIME</p>
                     <p class="font-medium text-sm font-inter text-black/60">
-                      15 Minutes
+                      {recipe.prep_time}
                     </p>
                   </div>
                 </div>
@@ -68,7 +77,7 @@ export default function DetailRecipe() {
                   <div class="cook-time flex flex-col gap-0.5">
                     <p class="font-medium text-sm font-inter">COOK TIME</p>
                     <p class="font-medium text-sm font-inter text-black/60">
-                      15 Minutes
+                      {recipe.cook_time}
                     </p>
                   </div>
                 </div>
@@ -79,7 +88,7 @@ export default function DetailRecipe() {
                   </div>
                   <div class="type-recipe">
                     <p class="font-medium text-sm font-inter text-black/60">
-                      Chicken
+                      {recipe.category}
                     </p>
                   </div>
                 </div>
@@ -110,7 +119,11 @@ export default function DetailRecipe() {
           {/* MIDDLE CONTENT */}
           <div class="flex gap-8">
             <div class="img w-5/6">
-              <img class="w-full" src={ImgCover} alt="" />
+              <img
+                class="w-full"
+                src={`http://localhost:8080/${recipe.image}`}
+                alt=""
+              />
             </div>
             <div class="nutrition-info w-1/3 flex flex-col justify-between px-6 py-8 bg-primary rounded-2xl">
               <div class="top-content flex flex-col gap-3">
@@ -120,18 +133,32 @@ export default function DetailRecipe() {
                   </h3>
                 </div>
                 <div class="detail flex flex-col">
-                  <NutritionInfo name={'Calories'} count={'219.9 kcal'} />
-                  <NutritionInfo name={'Total Fat'} count={'10.7 g'} />
-                  <NutritionInfo name={'Protein'} count={'7.9 g'} />
-                  <NutritionInfo name={'Carbohydrate'} count={'22.3 g'} />
-                  <NutritionInfo name={'Cholesterol'} count={'37.5 mg'} />
+                  <NutritionInfo
+                    name={'Calories'}
+                    count={`${recipe.nutrition.calories}`}
+                  />
+                  <NutritionInfo
+                    name={'Total Fat'}
+                    count={`${recipe.nutrition.total_fat}`}
+                  />
+                  <NutritionInfo
+                    name={'Protein'}
+                    count={`${recipe.nutrition.protein}`}
+                  />
+                  <NutritionInfo
+                    name={'Carbohydrate'}
+                    count={`${recipe.nutrition.carbohydrate}`}
+                  />
+                  <NutritionInfo
+                    name={'Cholesterol'}
+                    count={`${recipe.nutrition.cholesterol}`}
+                  />
                 </div>
               </div>
 
               <div class="bottom-content flex text-center">
                 <p class="font-normal text-base font-inter leading-7 text-black/60">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Officia, iure.
+                  {recipe.nutrition.description}
                 </p>
               </div>
             </div>
@@ -139,19 +166,7 @@ export default function DetailRecipe() {
 
           <div class="content-bottom">
             <p class="font-normal text-base font-inter leading-7 text-black/60">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum
-              sint, ad ducimus reprehenderit eum illum assumenda eos vero
-              commodi, debitis suscipit facere esse fuga, nostrum incidunt
-              voluptas porro. Ab architecto id explicabo hic ducimus. Temporibus
-              fugit dolores, consequatur id repellat voluptates explicabo
-              voluptatem in soluta impedit praesentium veritatis dicta odit
-              reprehenderit a saepe nostrum odio! Vero voluptatem temporibus
-              libero expedita ex, maiores dicta aliquam molestias debitis
-              perspiciatis laboriosam soluta dolorem error assumenda quod
-              inventore obcaecati officia consequuntur reiciendis cum! Eum vero
-              ipsum nam, fugit hic animi doloribus aspernatur ipsa quam
-              explicabo consequatur accusamus minima omnis! Maxime, iure
-              nostrum. Ea, explicabo!
+              {recipe.description}
             </p>
           </div>
 
@@ -170,15 +185,15 @@ export default function DetailRecipe() {
                       For main dish
                     </h3>
                   </div>
-                  <MainDishList
-                    paragraf={'Lorem ipsum dolor sit amet consectetur.'}
-                  />
-                  <MainDishList
-                    paragraf={'Lorem ipsum dolor sit amet consectetur.'}
-                  />
-                  <MainDishList
-                    paragraf={'Lorem ipsum dolor sit amet consectetur.'}
-                  />
+                  {recipe.main_dish.map((item, index) => (
+                    <div
+                      key={index}
+                      class="flex gap-5 py-6 border-b border-black/10 w-full items-center"
+                    >
+                      <div class="p-2.5 border border-[#DBE2E5] rounded-full"></div>
+                      <div class="font-normal font-inter text-lg">{item}</div>
+                    </div>
+                  ))}
                 </div>
 
                 {/* <!-- THE SAUCE --> */}
@@ -188,15 +203,15 @@ export default function DetailRecipe() {
                       For the sauce
                     </h3>
                   </div>
-                  <SauceList
-                    paragraf={'Lorem ipsum dolor sit amet consectetur.'}
-                  />
-                  <SauceList
-                    paragraf={'Lorem ipsum dolor sit amet consectetur.'}
-                  />
-                  <SauceList
-                    paragraf={'Lorem ipsum dolor sit amet consectetur.'}
-                  />
+                  {recipe.sauce.map((item, index) => (
+                    <div
+                      key={index}
+                      class="flex gap-5 py-6 border-b border-black/10 w-full items-center"
+                    >
+                      <div class="p-2.5 border border-[#DBE2E5] rounded-full"></div>
+                      <div class="font-normal font-inter text-lg">{item}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -273,21 +288,32 @@ export default function DetailRecipe() {
                   </h2>
                 </div>
                 <div class="flex flex-col gap-4">
-                  <OtherRecipeCard
-                    Img={ImgOtherRecipe1}
-                    Title={'Chicken Meatball with Creamy Chess...'}
-                    Author={'Andreas Pauls'}
-                  />
-                  <OtherRecipeCard
-                    Img={ImgOtherRecipe1}
-                    Title={'Chicken Meatball with Creamy Chess...'}
-                    Author={'Andreas Pauls'}
-                  />
-                  <OtherRecipeCard
-                    Img={ImgOtherRecipe1}
-                    Title={'Chicken Meatball with Creamy Chess...'}
-                    Author={'Andreas Pauls'}
-                  />
+                  {otherRecipe.map((recipe) => (
+                    <Link
+                      key={recipe.id}
+                      to={`/recipe_detail/${recipe.id}`}
+                      class="flex gap-4 items-center"
+                    >
+                      <div class="img">
+                        <img
+                          src={`http://localhost:8080/${recipe.image}`}
+                          alt=""
+                        />
+                      </div>
+                      <div class="flex flex-col gap-3">
+                        <div class="">
+                          <p class="font-semibold font-inter text-base leading-4.5">
+                            {recipe.title}
+                          </p>
+                        </div>
+                        <div class="">
+                          <p class="font-medium font-inter text-xs text-black/60">
+                            By {recipe.writer}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
 

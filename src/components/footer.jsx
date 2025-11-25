@@ -3,10 +3,12 @@ import LinkCustom from './linkCustom'
 
 export default function Footer({ style }) {
   return (
-    <footer class={`flex flex-col gap-8 justify-between w-full py-5 ${style}`}>
-      <div class="flex justify-between items-center">
-        <div class="flex flex-col gap-3">
-          <div class="img-logo">
+    <footer
+      className={`flex flex-col gap-8 justify-between w-full py-5 ${style}`}
+    >
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-3">
+          <div className="img-logo">
             <img src={Logo} alt="" />
           </div>
 
@@ -14,19 +16,19 @@ export default function Footer({ style }) {
             Lorem ipsum, dolor sit amet consectetur adipisicing.
           </p>
         </div>
-        <div class="flex justify-between gap-12">
+        <div className="flex justify-between gap-12">
           <LinkCustom name={'Recipe'} href={'#'}></LinkCustom>
           <LinkCustom name={'Blog'} href={'#'}></LinkCustom>
           <LinkCustom name={'Contact'} href={'#'}></LinkCustom>
           <LinkCustom name={'About us'} href={'#'}></LinkCustom>
         </div>
       </div>
-      <div class="border-t border-black/10"></div>
-      <div class="flex justify-center items-center gap-1.5">
-        <p class="font-medium text-lg text-black/60">
+      <div className="border-t border-black/10"></div>
+      <div className="flex justify-center items-center gap-1.5">
+        <p className="font-medium text-lg text-black/60">
           2020 Flowbase. Powered by
         </p>
-        <p class="text-[#FF7967]/60">Webflow</p>
+        <p className="text-[#FF7967]/60">Webflow</p>
       </div>
     </footer>
   )

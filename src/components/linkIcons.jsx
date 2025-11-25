@@ -3,7 +3,7 @@ export default function LinkIcons() {
     <a
       href="#"
       target="_blank"
-      class="hover:text-teal-400 transition-colors"
+      className="hover:text-teal-400 transition-colors"
     ></a>
   )
 }

@@ -4,12 +4,12 @@ import { SiFacebook, SiX, SiInstagram } from 'react-icons/si'
 
 export default function Header() {
   return (
-    <header class="flex justify-between w-full py-8 px-12 border-b border-black/10">
-      <div class="logo">
+    <header className="flex justify-between w-full py-8 px-12 border-b border-black/10">
+      <div className="logo">
         <img src={logo} alt="" />
       </div>
 
-      <div class="navbar flex justify-between gap-12">
+      <div className="navbar flex justify-between gap-12">
         <LinkCustom name={'Home'} href={'/'}></LinkCustom>
         <LinkCustom name={'Recipes'} href={'#'}></LinkCustom>
         <LinkCustom name={'Blog'} href={'/blog_article_list'}></LinkCustom>
@@ -17,27 +17,27 @@ export default function Header() {
         <LinkCustom name={'About us'} href={'#'}></LinkCustom>
       </div>
 
-      <div class="media flex justify-between gap-7">
+      <div className="media flex justify-between gap-7">
         <a
           href="#"
           target="_blank"
-          class="hover:text-teal-400 transition-colors"
+          className="hover:text-teal-400 transition-colors"
         >
-          <SiFacebook class="w-5 h-5" />
+          <SiFacebook className="w-5 h-5" />
         </a>
         <a
           href="#"
           target="_blank"
-          class="hover:text-teal-400 transition-colors"
+          className="hover:text-teal-400 transition-colors"
         >
-          <SiX class="w-5 h-5" />
+          <SiX className="w-5 h-5" />
         </a>
         <a
           href="#"
           target="_blank"
-          class="hover:text-teal-400 transition-colors"
+          className="hover:text-teal-400 transition-colors"
         >
-          <SiInstagram class="w-5 h-5" />
+          <SiInstagram className="w-5 h-5" />
         </a>
       </div>
     </header>
