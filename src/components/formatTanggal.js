@@ -1,4 +1,4 @@
-export default function formatTanggal(dateString) {
+export default function FormatTanggal(dateString) {
   const date = new Date(dateString)
   const bulan = [
     'Januari',

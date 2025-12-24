@@ -1,8 +1,9 @@
-import BlogCard from '../components/blog/blogCard'
-import ImgBlog from '../assets/blog/Mask Group (1).png'
-import ImgOtherRecipe1 from '../assets/details/other-recipe/Mask Group.png'
-import ImgAds from '../assets/details/other-recipe/Ads.png'
-import OtherRecipeCard from '../components/recipe/otherRecipeCard'
+import BlogCard from './blogCard'
+import ImgBlog from '../../assets/blog/Mask Group (1).png'
+import ImgOtherRecipe1 from '../../assets/details/other-recipe/Mask Group.png'
+import ImgAds from '../../assets/details/other-recipe/Ads.png'
+import OtherRecipeCard from '../detail_recipe/otherRecipeCard'
+import { ChevronRight } from 'lucide-react'
 
 export default function BlogListContainer() {
   return (

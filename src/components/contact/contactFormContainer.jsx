@@ -1,5 +1,5 @@
-import ImgContact from '../assets/contact/Layer 1 1.png'
-import FormInput from '../components/contact/formInput'
+import ImgContact from '../../assets/contact/Layer 1 1.png'
+import FormInput from './formInput'
 
 export default function ContactFormContainer() {
   return (

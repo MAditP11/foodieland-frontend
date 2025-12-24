@@ -1,4 +1,33 @@
+import { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
+// import ImgCover from '../assets/details/Group13937.png'
+// import ImgDirect1 from '../assets/details/directions/Rectangle 23.png'
+// import ImgOtherRecipe1 from '../assets/details/other-recipe/Mask Group.png'
+import ImgAds from '../../assets/details/other-recipe/Ads.png'
+import { Timer, Utensils, User, Printer, Share } from 'lucide-react'
+import NutritionInfo from './nutritionInfo'
+// import MainDishList from '../components/detail_recipe/maindishlist'
+// import SauceList from '../components/detail_recipe/saucelist'
+// import OtherRecipeCard from '../components/detail_recipe/otherRecipeCard'
+
+import { GetAllRecipes, GetRecipeById } from '../../api/recipeApi'
+
+import FormatTanggal from '../formatTanggal'
+
 export default function DetailRecipeContainer() {
+  const { id } = useParams()
+  const [recipe, setRecipe] = useState(null)
+  console.log(recipe)
+  const [recipes, setRecipes] = useState([])
+  const otherRecipe = recipes.filter((r) => r.id !== Number(id))
+  useEffect(() => {
+    GetRecipeById(id).then(setRecipe).catch(console.error)
+    GetAllRecipes().then(setRecipes).catch(console.error)
+  }, [id])
+
+  if (!recipe) {
+    return <div>Loading...</div> // ← cegah error
+  }
   return (
     <div class="flex flex-col w-full pt-14 gap-16">
       <div class="content-top w-full flex items-center justify-between">
@@ -15,7 +44,7 @@ export default function DetailRecipeContainer() {
               <div class="data-user flex flex-col gap-0.5">
                 <p class="font-bold text-base font-inter">{recipe.writer}</p>
                 <p class="font-medium text-sm font-inter text-black/60">
-                  {formatTanggal(recipe.create_at)}
+                  {FormatTanggal(recipe.create_at)}
                 </p>
               </div>
             </div>

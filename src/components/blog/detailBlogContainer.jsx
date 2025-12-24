@@ -1,5 +1,5 @@
-import ImgDetailBlog from '../assets/detail_blog&article/Mask Group (2).png'
-import ImgDetailBlogSec from '../assets/detail_blog&article/Rectangle 23 (1).png'
+import ImgDetailBlog from '../../assets/detail_blog&article/Mask Group (2).png'
+import ImgDetailBlogSec from '../../assets/detail_blog&article/Rectangle 23 (1).png'
 import { User } from 'lucide-react'
 import { SiFacebook, SiX, SiInstagram } from 'react-icons/si'
 
