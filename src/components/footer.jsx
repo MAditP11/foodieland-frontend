@@ -1,4 +1,4 @@
-import Logo from '../assets/IMG_FOODIELAND/logo.png'
+import Logo from '../assets/logo.png'
 import LinkCustom from './linkCustom'
 
 export default function Footer({ style }) {

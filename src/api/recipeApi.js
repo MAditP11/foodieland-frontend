@@ -13,3 +13,19 @@ export async function GetRecipeById(id) {
   const data = await res.json()
   return data.data
 }
+
+export default async function PatchIsLikeRecipe(id, currentValue) {
+  const formData = new FormData()
+  formData.append('is_like', !currentValue)
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`, {
+      method: 'PATCH',
+      body: formData,
+    })
+    if (!res.ok) throw new Error('Gagal update like')
+    return true
+  } catch (err) {
+    console.error(err)
+    return false
+  }
+}

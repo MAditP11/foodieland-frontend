@@ -2,18 +2,17 @@ import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import '../index.css'
 import Header from '../components/header'
-import ImgCover from '../assets/IMG_FOODIELAND/details/Group13937.png'
-import ImgDirect1 from '../assets/IMG_FOODIELAND/details/directions/Rectangle 23.png'
-import ImgOtherRecipe1 from '../assets/IMG_FOODIELAND/details/other-recipe/Mask Group.png'
-import ImgAds from '../assets/IMG_FOODIELAND/details/other-recipe/Ads.png'
+import ImgCover from '../assets/details/Group13937.png'
+import ImgDirect1 from '../assets/details/directions/Rectangle 23.png'
+import ImgOtherRecipe1 from '../assets/details/other-recipe/Mask Group.png'
+import ImgAds from '../assets/details/other-recipe/Ads.png'
 import { Timer, Utensils, User, Printer, Share } from 'lucide-react'
 import NutritionInfo from '../components/recipe/nutritionInfo'
 import MainDishList from '../components/recipe/maindishlist'
 import SauceList from '../components/recipe/saucelist'
 import OtherRecipeCard from '../components/recipe/otherRecipeCard'
 import SubscribeContainer from '../components/subsContainer'
-import ImgCardList from '../assets/IMG_FOODIELAND/list/image 26.png'
-import CardList2 from '../components/cardList2'
+import formatTanggal from '../components/formatTanggal'
 import Footer from '../components/footer'
 import CardList2Container from '../components/cardList2Container'
 import { GetAllRecipes, GetRecipeById } from '../api/recipeApi'
@@ -58,7 +57,7 @@ export default function DetailRecipe() {
                       {recipe.writer}
                     </p>
                     <p class="font-medium text-sm font-inter text-black/60">
-                      {recipe.create_at}
+                      {formatTanggal(recipe.create_at)}
                     </p>
                   </div>
                 </div>
@@ -234,7 +233,7 @@ export default function DetailRecipe() {
                       <div class="p-2.5 border border-[#DBE2E5] rounded-full h-fit mt-1"></div>
                       <div class="flex flex-col gap-6 ">
                         <div class="font-semibold font-inter text-2xl">
-                          {++index} {direction.title_direction}
+                          {++index}. {direction.title_direction}
                         </div>
                         <div class="font-normal text-base font-inter text-black/60 leading-7">
                           Lorem ipsum dolor sit amet, consectetur adipisicing

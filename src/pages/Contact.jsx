@@ -3,7 +3,7 @@
 // import viteLogo from '/vite.svg'
 import '../index.css'
 import Header from '../components/header'
-import ImgContact from '../assets/IMG_FOODIELAND/contact/Layer 1 1.png'
+import ImgContact from '../assets/contact/Layer 1 1.png'
 import FormInput from '../components/contact/formInput'
 import SubscribeContainer from '../components/subsContainer'
 import CardList2Container from '../components/cardList2Container'

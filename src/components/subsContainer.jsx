@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import ImgLeftSide from '../assets/IMG_FOODIELAND/subs/kisspng-salad-salad-fresh-food-healthylife-vegetables-vegetarian-5d42e3a7cb8543 1.png'
-import ImgRightSide from '../assets/IMG_FOODIELAND/subs/Photo.png'
+import ImgLeftSide from '../assets/home/subs/left_img.png'
+import ImgRightSide from '../assets/home/subs/right_img.png'
 
 export default function SubscribeContainer({ style }) {
   const [email, setEmail] = useState([])

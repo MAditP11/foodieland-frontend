@@ -1,4 +1,4 @@
-import logo from '../assets/IMG_FOODIELAND/logo.png'
+import logo from '../assets/logo.png'
 import LinkCustom from './linkCustom'
 import { SiFacebook, SiX, SiInstagram } from 'react-icons/si'
 
